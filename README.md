@@ -138,8 +138,15 @@ JSON Body Example:
 
 ### **Output**
 
+Output Example 1:
 <img width="1919" height="983" alt="image" src="https://github.com/user-attachments/assets/c0683a78-a35c-4ed9-b85a-baeaf72aeae9" />
 <img width="1919" height="1008" alt="image" src="https://github.com/user-attachments/assets/70b8ee7d-19bd-401d-aad7-5d4af6fc5fae" />
+
+Output Example 2:
+<img width="1919" height="640" alt="image" src="https://github.com/user-attachments/assets/23e4e393-1db6-4386-9775-f354d0df7ae3" />
+<img width="1919" height="508" alt="image" src="https://github.com/user-attachments/assets/54a1a238-7807-4625-97c8-11f66021c530" />
+<img width="1919" height="993" alt="image" src="https://github.com/user-attachments/assets/9682927d-5f5c-46e1-99f5-65a398b2f144" />
+
 
 ---
 
