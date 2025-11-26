@@ -1,0 +1,10 @@
+Django backend for Task Analyzer.
+Run:
+python -m venv venv
+source venv/bin/activate  # or venv\Scripts\activate on Windows
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py runserver 8000
+API endpoints:
+POST /api/tasks/analyze/  -> body: { "tasks": [ ... ], "strategy": "smart" }
+GET  /api/tasks/suggest/  -> optional: ?tasks_json=<json-encoded-array>

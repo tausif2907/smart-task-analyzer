@@ -1,0 +1,8 @@
+body{font-family:Arial,Helvetica,sans-serif;padding:10px}
+.container{max-width:900px;margin:0 auto}
+form input{display:block;margin:5px 0;padding:8px;width:100%}
+button{padding:8px 12px;margin-top:8px}
+#results .task{border:1px solid #ddd;padding:8px;margin:8px 0;border-radius:6px}
+.high{background:#ffe6e6}
+.medium{background:#fff7e6}
+.low{background:#e6ffe6}
