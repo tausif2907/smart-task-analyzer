@@ -1,106 +1,130 @@
 # Task Analyzer
-A mini full-stack application that intelligently scores and prioritizes tasks based on urgency, importance, estimated effort, and dependency relationships.
-This project includes a Django REST API backend and a vanilla HTML/CSS/JS frontend for task entry, analysis, and visualization.
 
-📁 Project Structure
+A mini full-stack application that intelligently scores and prioritizes tasks based on urgency, importance, estimated effort, and dependency relationships.  
+This project includes:
+
+- A **Django REST API backend**
+- A **vanilla HTML/CSS/JS frontend** for task entry, analysis, and visualization
+
+---
+
+## Project Structure
+```
 task-analyzer/
 │
 ├── backend/
-│   ├── manage.py
-│   ├── task_analyzer/
-│   │   ├── settings.py
-│   │   ├── urls.py
-│   │   └── wsgi.py
-│   ├── tasks/
-│   │   ├── scoring.py
-│   │   ├── models.py
-│   │   ├── urls.py
-│   │   ├── views.py
-│   │   ├── serializers.py
-│   │   └── tests.py
-│   └── requirements.txt
+│ ├── manage.py
+│ ├── requirements.txt
+│ ├── task_analyzer/
+│ │ ├── settings.py
+│ │ ├── urls.py
+│ │ ├── wsgi.py
+│ ├── tasks/
+│ │ ├── models.py
+│ │ ├── scoring.py
+│ │ ├── serializers.py
+│ │ ├── views.py
+│ │ ├── urls.py
+│ │ ├── tests.py
 │
-└── frontend/
-    ├── index.html
-    ├── styles.css
-    └── script.js
+├── frontend/
+│ ├── index.html
+│ ├── styles.css
+│ ├── script.js
+```
 
-🚀 Features
-Backend
+---
 
-✔ Custom scoring algorithm
-✔ Handles urgency, importance, effort, dependencies
-✔ Detects circular dependencies
-✔ Supports multiple prioritization strategies
-✔ API endpoints built with Django REST Framework
-✔ Unit tests included
+## Backend Features
 
-Frontend
+- Custom multi-factor task scoring algorithm
+- Supports urgency, due dates, importance, effort, and dependencies
+- Detects and reports circular dependencies
+- Multiple prioritization strategies (Smart Balance, Urgency-First, Impact-First, etc.)
+- Django REST Framework API endpoints
+- Unit tests included
 
-✔ Task entry form
-✔ JSON bulk input
-✔ Strategy selection dropdown
-✔ API integration with backend
-✔ Results displayed with color-coded priority indicators
+---
 
-⚙️ Setup Instructions
+## Frontend Features
+
+- Simple task entry form  
+- JSON bulk task input  
+- Strategy selection dropdown  
+- API integration with backend  
+- Color-coded result display  
+- Clear score explanation per task  
+
+---
+
+## ⚙️ Setup Instructions
 
 Follow these steps to run the project locally.
 
-1. Backend Setup (Django)
-Step 1 — Navigate into the backend folder
+---
+
+### **1️⃣ Backend Setup (Django)**
+
+#### Step 1 — Navigate into the backend folder
+```
 cd backend
-
+```
 Step 2 — Create and activate a virtual environment
-
 Windows (PowerShell):
+
+```bash
 
 python -m venv venv
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy RemoteSigned
 .\venv\Scripts\Activate.ps1
-
+```
 Step 3 — Install dependencies
+```bash
 pip install -r requirements.txt
-
+```
 Step 4 — Apply migrations
+```bash
 python manage.py migrate
-
-Step 5 — Start the server
+```
+Step 5 — Start the backend server
+```bash
 python manage.py runserver 8000
-
-
-Backend runs at:
-
+```
+Backend will now be running at:
+```
 http://127.0.0.1:8000
+```
 
-2. Frontend Setup
+---
 
-Open a new terminal and run:
-
+### **2️⃣ Frontend Setup**
+Open a new terminal and navigate to the frontend folder:
+```
 cd frontend
+```
+Start a simple HTTP server:
+```bash
 python -m http.server 8080
-
-
-Frontend runs at:
-
+```
+Frontend will be available at:
+```
 http://127.0.0.1:8080
+```
 
+---
 
-Make sure backend (port 8000) is running before testing the frontend.
+### **API Endpoints**
+Analyze Tasks
 
-📡 API Endpoints
-POST /api/tasks/analyze/
+POST /api/tasks/analyze/?strategy=smart
+JSON Body Example:
 
-Analyzes and returns sorted tasks with scores and explanations.
-
-Sample Request Body
-
+```json
 {
-  "strategy": "smart",
   "tasks": [
     {
       "id": "1",
-      "title": "Fix login issue",
+      "title": "Fix login",
       "due_date": "2025-11-30",
       "estimated_hours": 2,
       "importance": 8,
@@ -108,120 +132,27 @@ Sample Request Body
     }
   ]
 }
+```
 
-GET /api/tasks/suggest/
+---
 
-Returns top 3 recommended tasks with reasoning.
+### **Output**
 
-🧠 Scoring Algorithm Overview
+<img width="1919" height="983" alt="image" src="https://github.com/user-attachments/assets/c0683a78-a35c-4ed9-b85a-baeaf72aeae9" />
+<img width="1919" height="1008" alt="image" src="https://github.com/user-attachments/assets/70b8ee7d-19bd-401d-aad7-5d4af6fc5fae" />
 
-The algorithm considers four major dimensions:
+---
 
-1. Urgency
-
-Tasks closer to the due date score higher
-
-Overdue tasks receive an additional boost
-
-2. Importance
-
-User-assigned weight from 1–10
-
-3. Effort
-
-Lower effort → higher score (quick wins)
-
-Uses a logarithmic reduction for long tasks
-
-4. Dependencies
-
-Tasks that block other tasks get priority
-
-Circular dependencies are detected and reported
-
-Strategies Supported
-Strategy	Description
-Smart Balance	Considers all factors (default)
-Fastest Wins	Favors low-effort tasks
-High Impact	Favors importance
-Deadline Driven	Favors urgency
-🎛️ Frontend Usage Guide
-Option 1 — Enter tasks individually
-
-Fill out:
-
-Title
-
-Due date
-
-Estimated hours
-
-Importance
-
-Dependencies (comma-separated IDs)
-
-Click Add → then Analyze Tasks.
-
-Option 2 — Use bulk JSON input
-
-Example:
-
-[
-  {
-    "id": "1",
-    "title": "Fix error logs",
-    "due_date": "2025-12-05",
-    "estimated_hours": 2,
-    "importance": 9,
-    "dependencies": []
-  },
-  {
-    "id": "2",
-    "title": "Write report",
-    "due_date": "2025-12-02",
-    "estimated_hours": 1,
-    "importance": 6,
-    "dependencies": ["1"]
-  }
-]
-
-
-Choose a strategy → Click Analyze Tasks.
-
-Results
-
-Sorted by score (highest first)
-
-Color-coded:
-
-🔴 High priority
-
-🟡 Medium priority
-
-🟢 Low priority
-
-Each task includes an explanation:
-
-Due date impact
-
-Importance
-
-Estimated hours
-
-Dependency influence
-
-🧪 Running Unit Tests
-
-In the backend folder with venv active:
-
+### **Running Unit Tests**
+```
 python manage.py test tasks
+```
+---
 
-📸 Output
+### **Summary**
+This project is a compact full-stack application demonstrating:
 
-(Add your screenshots here)
-
-Example:
-
-<img width="1912" height="981" alt="image" src="https://github.com/user-attachments/assets/f800d9cc-b789-4490-a8d2-18e5afb72166" />
-<img width="1891" height="1003" alt="image" src="https://github.com/user-attachments/assets/6143f27e-85e6-4ded-ba3a-a0ac032e8613" />
-
+- Django REST API development
+- Custom business logic (task scoring)
+- Frontend-to-backend communication
+- Clean separation between UI and backend logic
